@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Physics Lab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg'); /* Path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #0056b3;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar a {
+            background-color: #0056b3; /* Same as navbar color */
+            color: white;
+            text-decoration: none;
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid white; /* White outline for the Home button */
+        }
+        .navbar a:hover {
+            background-color: #000000; /* Hover effect for Home button */
+        }
+        .navbar a:active {
+            background-color: #000000; /* Click effect for Home button */
+        }
+        .navbar h1 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 70px; /* Adjusted for navbar height */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .dropdown {
+            display: none; /* Initially hide the dropdown */
+            margin-top: 20px;
+        }
+        .dropdown select {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+        iframe {
+            width: 80%;
+            height: 70vh;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function revealDropdown() {
+            document.getElementById('dropdown').style.display = 'block';
+            document.getElementById('startButton').style.display = 'none';
+        }
+
+        function loadExperiment() {
+            const experimentURL = document.getElementById('experimentSelect').value;
+            if (experimentURL) {
+                document.getElementById('experimentFrame').src = experimentURL;
+                document.getElementById('dropdown').style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <h1>WELCOME TO VIRTUAL LAB</h1>
+        <div style="width: 64px;"></div> <!-- Placeholder to balance the Home link -->
+    </div>
+    <div class="container">
+        <button id="startButton" onclick="revealDropdown()">Start lab </button>
+        <div id="dropdown" class="dropdown">
+            <select id="experimentSelect" onchange="loadExperiment()">
+                <option value="">Select an experiment</option>
+                <option value="https://bop-iitk.vlabs.ac.in/exp/energy-band-gap/simulation.html">Experiment 1: Energy gap of PN junction diode</option>
+                <option value="https://vlab.amrita.edu/index.php?sub=1&brch=195&sim=547&cnt=4">Experiment 2: Planck’s Constant</option>
+                <option value="https://ophysics.com/w8.html">Experiment 3: Melde’s Experiment</option>
+                <option value="https://bop-iitk.vlabs.ac.in/basics-of-physics/exp/numerical-aperture-measurement/simulation.html">Experiment 4: Optical fiber</option>
+                <option value="https://ophysics.com/l5b.html">Experiment 5: LASER</option>
+                <option value="https://vlab.amrita.edu/index.php?sub=1&brch=280&sim=1518&cnt=4">Experiment 6: Torsional Pendulum</option>
+                <option value="https://vlab.amrita.edu/index.php?sub=1&brch=192&sim=972&cnt=4">Experiment 7: Stewart Gee’s experiment</option>
+                <option value="https://ophysics.com/l3.html">Experiment 8: Malus law</option>
+                <option value="http://mpv-au.vlabs.ac.in/modern-physics/Hall_Effect_Experiment/experiment.html">Experiment 9: Hall effect</option>
+                <option value="https://vlab.amrita.edu/index.php?sub=1&brch=189&sim=1520&cnt=4v">Experiment 10: Newton’s rings</option>
+                <option value="http://htv-au.vlabs.ac.in/heat-thermodynamics/Characteristics_of_Thermistor/experiment.html">Experiment 11: Characteristics of Thermistor</option>
+            </select>
+        </div>
+        <iframe id="experimentFrame"></iframe>
+    </div>
+</body>
+</html>
